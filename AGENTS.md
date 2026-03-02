@@ -20,9 +20,8 @@ This document provides comprehensive guidelines for AI agents and LLMs working o
 
 **Before writing a single line of code**, you are REQUIRED to:
 
-1. **OPEN and READ EVERY relevant file** inside the `/docs` directory that relates to your task — no exceptions, no shortcuts
-2. **FULLY UNDERSTAND and APPLY** every pattern, rule, and guideline found in those files
-3. **CONFIRM** that you have read the documentation before proceeding
+1. **FULLY UNDERSTAND and APPLY** every pattern, rule, and guideline found in those files
+2. **CONFIRM** that you have read the documentation before proceeding
 
 > ⚠️ **If you skip this step, your output will be considered invalid.**
 > The documentation exists precisely to prevent incorrect, insecure, or inconsistent implementations.
@@ -34,10 +33,10 @@ This document provides comprehensive guidelines for AI agents and LLMs working o
 
 You MUST individually open and read each of the following files before generating code for the corresponding feature:
 
-| Task                                            | File to Read FIRST                                   | Why It's Critical                                       |
-| ----------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------- |
-| Any authentication, route protection, user data | **[docs/authentication.md](docs/authentication.md)** | Prevents security vulnerabilities and broken auth flows |
-| Any UI components, layouts, forms               | **[docs/shadcn-ui.md](docs/shadcn-ui.md)**           | Ensures only approved shadcn UI primitives are used     |
+| Task                                            | File to Read FIRST                                                                             | Why It's Critical                                       |
+| ----------------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Any authentication, route protection, user data | **[instructions/authentication.instructions.md](instructions/authentication.instructions.md)** | Prevents security vulnerabilities and broken auth flows |
+| Any UI components, layouts, forms               | **[instructions/shadcn-ui.instructions.md](instructions/shadcn-ui.instructions.md)**           | Ensures only approved shadcn UI primitives are used     |
 
 > 🔴 **Do NOT rely on memory or assumptions.**
 > 🔴 **Actually open and read the file — every time, for every task.**
@@ -47,7 +46,7 @@ You MUST individually open and read each of the following files before generatin
 ### ✅ Mandatory Workflow — No Exceptions
 
 1. **Identify** what you need to implement
-2. **Open and read** every applicable file in `/docs` completely and carefully
+2. **Open and read** every applicable file in `/instructions` completely and carefully
 3. **Extract** the specific patterns, rules, and guidelines relevant to your task
 4. **Apply** those patterns faithfully in your implementation
 5. **Only then** generate code

@@ -1,3 +1,7 @@
+---
+description: Read this file before implementing any authentication-related features. It contains critical guidelines for using Clerk correctly and securely.
+---
+
 # Authentication Guidelines
 
 This document provides specific guidelines for implementing and working with authentication in this project.
