@@ -68,7 +68,7 @@ export default async function DashboardPage() {
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-start justify-between gap-2">
                   <a
-                    href={`${baseUrl}/${link.shortCode}`}
+                    href={`${baseUrl}/l/${link.shortCode}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-mono text-primary hover:underline flex items-center gap-1 min-w-0"
