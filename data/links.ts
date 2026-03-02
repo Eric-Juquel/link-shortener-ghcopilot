@@ -62,3 +62,18 @@ export async function updateLink(
 export async function deleteLinkById(id: number): Promise<void> {
   await db.delete(links).where(eq(links.id, id));
 }
+
+/**
+ * Fetches a single link by its short code.
+ * @param shortCode - The unique short code identifying the link
+ * @returns The Link object or undefined if not found
+ */
+export async function getLinkByShortCode(
+  shortCode: string,
+): Promise<Link | undefined> {
+  const [link] = await db
+    .select()
+    .from(links)
+    .where(eq(links.shortCode, shortCode));
+  return link;
+}
