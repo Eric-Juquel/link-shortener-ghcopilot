@@ -1,13 +1,13 @@
-"use server";
+'use server';
 
-import { z } from "zod";
-import { auth } from "@clerk/nextjs/server";
+import { z } from 'zod';
+import { auth } from '@clerk/nextjs/server';
 import {
   insertLink,
   getLinkById,
   updateLink,
   deleteLinkById,
-} from "@/data/links";
+} from '@/data/links';
 
 type CreateLinkInput = {
   url: string;
@@ -17,14 +17,14 @@ type CreateLinkInput = {
 type CreateLinkResult = { success: true } | { error: string };
 
 const createLinkSchema = z.object({
-  url: z.string().url("Please enter a valid URL"),
+  url: z.string().url('Please enter a valid URL'),
   shortCode: z
     .string()
-    .min(1, "Short code is required")
-    .max(50, "Short code must be 50 characters or less")
+    .min(1, 'Short code is required')
+    .max(50, 'Short code must be 50 characters or less')
     .regex(
       /^[a-zA-Z0-9_-]+$/,
-      "Short code can only contain letters, numbers, hyphens and underscores",
+      'Short code can only contain letters, numbers, hyphens and underscores',
     ),
 });
 
@@ -37,7 +37,7 @@ export async function createLink(
   input: CreateLinkInput,
 ): Promise<CreateLinkResult> {
   const { userId } = await auth();
-  if (!userId) return { error: "Unauthorized" };
+  if (!userId) return { error: 'Unauthorized' };
 
   const parsed = createLinkSchema.safeParse(input);
   if (!parsed.success) {
@@ -49,12 +49,12 @@ export async function createLink(
     return { success: true };
   } catch (err) {
     // Handle unique constraint violation on shortCode
-    if (err instanceof Error && err.message.includes("unique")) {
+    if (err instanceof Error && err.message.includes('unique')) {
       return {
-        error: "This short code is already taken. Please choose another.",
+        error: 'This short code is already taken. Please choose another.',
       };
     }
-    return { error: "Failed to create link. Please try again." };
+    return { error: 'Failed to create link. Please try again.' };
   }
 }
 
@@ -72,14 +72,14 @@ type EditLinkResult = { success: true } | { error: string };
 
 const editLinkSchema = z.object({
   id: z.number().int().positive(),
-  url: z.string().url("Please enter a valid URL"),
+  url: z.string().url('Please enter a valid URL'),
   shortCode: z
     .string()
-    .min(1, "Short code is required")
-    .max(50, "Short code must be 50 characters or less")
+    .min(1, 'Short code is required')
+    .max(50, 'Short code must be 50 characters or less')
     .regex(
       /^[a-zA-Z0-9_-]+$/,
-      "Short code can only contain letters, numbers, hyphens and underscores",
+      'Short code can only contain letters, numbers, hyphens and underscores',
     ),
 });
 
@@ -90,7 +90,7 @@ const editLinkSchema = z.object({
  */
 export async function editLink(input: EditLinkInput): Promise<EditLinkResult> {
   const { userId } = await auth();
-  if (!userId) return { error: "Unauthorized" };
+  if (!userId) return { error: 'Unauthorized' };
 
   const parsed = editLinkSchema.safeParse(input);
   if (!parsed.success) {
@@ -99,7 +99,7 @@ export async function editLink(input: EditLinkInput): Promise<EditLinkResult> {
 
   const existing = await getLinkById(parsed.data.id);
   if (!existing || existing.userId !== userId) {
-    return { error: "Link not found." };
+    return { error: 'Link not found.' };
   }
 
   try {
@@ -109,12 +109,12 @@ export async function editLink(input: EditLinkInput): Promise<EditLinkResult> {
     });
     return { success: true };
   } catch (err) {
-    if (err instanceof Error && err.message.includes("unique")) {
+    if (err instanceof Error && err.message.includes('unique')) {
       return {
-        error: "This short code is already taken. Please choose another.",
+        error: 'This short code is already taken. Please choose another.',
       };
     }
-    return { error: "Failed to update link. Please try again." };
+    return { error: 'Failed to update link. Please try again.' };
   }
 }
 
@@ -138,7 +138,7 @@ export async function deleteLink(
   input: DeleteLinkInput,
 ): Promise<DeleteLinkResult> {
   const { userId } = await auth();
-  if (!userId) return { error: "Unauthorized" };
+  if (!userId) return { error: 'Unauthorized' };
 
   const parsed = deleteLinkSchema.safeParse(input);
   if (!parsed.success) {
@@ -147,13 +147,13 @@ export async function deleteLink(
 
   const existing = await getLinkById(parsed.data.id);
   if (!existing || existing.userId !== userId) {
-    return { error: "Link not found." };
+    return { error: 'Link not found.' };
   }
 
   try {
     await deleteLinkById(parsed.data.id);
     return { success: true };
   } catch {
-    return { error: "Failed to delete link. Please try again." };
+    return { error: 'Failed to delete link. Please try again.' };
   }
 }

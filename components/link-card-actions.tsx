@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Pencil, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Pencil, Trash2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -11,7 +11,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,11 +21,11 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { editLink, deleteLink } from "@/app/dashboard/actions";
-import type { Link } from "@/db/schema";
+} from '@/components/ui/alert-dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { editLink, deleteLink } from '@/app/dashboard/actions';
+import type { Link } from '@/db/schema';
 
 interface LinkCardActionsProps {
   link: Link;
@@ -62,7 +62,7 @@ export function LinkCardActions({ link }: LinkCardActionsProps) {
 
     setEditLoading(false);
 
-    if ("error" in result) {
+    if ('error' in result) {
       setEditError(result.error);
       return;
     }
@@ -161,7 +161,7 @@ export function LinkCardActions({ link }: LinkCardActionsProps) {
                 Cancel
               </Button>
               <Button type="submit" disabled={editLoading}>
-                {editLoading ? "Saving..." : "Save changes"}
+                {editLoading ? 'Saving...' : 'Save changes'}
               </Button>
             </DialogFooter>
           </form>
@@ -174,8 +174,8 @@ export function LinkCardActions({ link }: LinkCardActionsProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete this link?</AlertDialogTitle>
             <AlertDialogDescription>
-              The short link{" "}
-              <span className="font-mono font-semibold">/{link.shortCode}</span>{" "}
+              The short link{' '}
+              <span className="font-mono font-semibold">/{link.shortCode}</span>{' '}
               will be permanently deleted. This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
@@ -188,7 +188,7 @@ export function LinkCardActions({ link }: LinkCardActionsProps) {
               disabled={deleteLoading}
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >
-              {deleteLoading ? "Deleting..." : "Delete"}
+              {deleteLoading ? 'Deleting...' : 'Delete'}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

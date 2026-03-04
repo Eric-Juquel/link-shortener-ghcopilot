@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "hooks": {
+    "postToolUse": [
+      {
+        "type": "command",
+        "bash": "cat > tmp/$(date +%s).json",
+        "description": "Save tool output to a timestamped file in the tmp directory"
+      }
+    ]
+  }
+}

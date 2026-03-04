@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { ClerkProvider } from "@clerk/nextjs";
-import { shadcn } from "@clerk/themes";
+import { ClerkProvider } from '@clerk/nextjs';
+import { shadcn } from '@clerk/themes';
 
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 interface ClerkThemeProviderProps {
   children: ReactNode;

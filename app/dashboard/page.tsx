@@ -1,31 +1,31 @@
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
-import { headers } from "next/headers";
-import { getLinksByUserId } from "@/data/links";
+import { auth } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
+import { headers } from 'next/headers';
+import { getLinksByUserId } from '@/data/links';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Link2, ExternalLink, Calendar } from "lucide-react";
-import { CreateLinkDialog } from "@/components/create-link-dialog";
-import { LinkCardActions } from "@/components/link-card-actions";
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Link2, ExternalLink, Calendar } from 'lucide-react';
+import { CreateLinkDialog } from '@/components/create-link-dialog';
+import { LinkCardActions } from '@/components/link-card-actions';
 
 export default async function DashboardPage() {
   const { userId } = await auth();
 
   if (!userId) {
-    redirect("/");
+    redirect('/');
   }
 
   const userLinks = await getLinksByUserId(userId);
 
   const headersList = await headers();
-  const host = headersList.get("host") ?? "localhost:3000";
-  const protocol = host.startsWith("localhost") ? "http" : "https";
+  const host = headersList.get('host') ?? 'localhost:3000';
+  const protocol = host.startsWith('localhost') ? 'http' : 'https';
   const baseUrl = `${protocol}://${host}`;
 
   return (
@@ -40,7 +40,7 @@ export default async function DashboardPage() {
         </div>
         <div className="flex items-center gap-3">
           <Badge variant="secondary" className="text-sm">
-            {userLinks.length} {userLinks.length === 1 ? "link" : "links"}
+            {userLinks.length} {userLinks.length === 1 ? 'link' : 'links'}
           </Badge>
           <CreateLinkDialog />
         </div>
@@ -92,10 +92,10 @@ export default async function DashboardPage() {
               <CardContent className="pt-0">
                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                   <Calendar className="size-3.5 shrink-0" />
-                  {new Date(link.createdAt).toLocaleDateString("en-GB", {
-                    day: "numeric",
-                    month: "short",
-                    year: "numeric",
+                  {new Date(link.createdAt).toLocaleDateString('en-GB', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric',
                   })}
                 </div>
               </CardContent>

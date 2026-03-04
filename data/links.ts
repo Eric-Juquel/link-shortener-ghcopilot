@@ -1,6 +1,6 @@
-import { db } from "@/db/db";
-import { links, type Link, type NewLink } from "@/db/schema";
-import { eq, desc } from "drizzle-orm";
+import { db } from '@/db/db';
+import { links, type Link, type NewLink } from '@/db/schema';
+import { eq, desc } from 'drizzle-orm';
 
 /**
  * Fetches all links belonging to the given user, sorted by most recent.
@@ -21,7 +21,7 @@ export async function getLinksByUserId(userId: string): Promise<Link[]> {
  * @returns The newly created Link object
  */
 export async function insertLink(
-  data: Pick<NewLink, "url" | "shortCode" | "userId">,
+  data: Pick<NewLink, 'url' | 'shortCode' | 'userId'>,
 ): Promise<Link> {
   const [link] = await db.insert(links).values(data).returning();
   return link;
@@ -45,7 +45,7 @@ export async function getLinkById(id: number): Promise<Link | undefined> {
  */
 export async function updateLink(
   id: number,
-  data: Pick<NewLink, "url" | "shortCode">,
+  data: Pick<NewLink, 'url' | 'shortCode'>,
 ): Promise<Link> {
   const [link] = await db
     .update(links)

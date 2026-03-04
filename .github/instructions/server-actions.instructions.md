@@ -49,7 +49,7 @@ export async function createLink(formData: FormData) { ... }
 - ALL inputs MUST be validated using **Zod** before any processing
 
 ```typescript
-import { z } from "zod";
+import { z } from 'zod';
 
 const createLinkSchema = z.object({
   url: z.string().url(),
@@ -58,7 +58,7 @@ const createLinkSchema = z.object({
 
 export async function createLink(input: CreateLinkInput) {
   const parsed = createLinkSchema.safeParse(input);
-  if (!parsed.success) return { error: "Invalid input" };
+  if (!parsed.success) return { error: 'Invalid input' };
   // ...
 }
 ```
@@ -69,11 +69,11 @@ export async function createLink(input: CreateLinkInput) {
 - Use Clerk's `auth()` to retrieve the current user
 
 ```typescript
-import { auth } from "@clerk/nextjs/server";
+import { auth } from '@clerk/nextjs/server';
 
 export async function createLink(input: CreateLinkInput) {
   const { userId } = await auth();
-  if (!userId) return { error: "Unauthorized" };
+  if (!userId) return { error: 'Unauthorized' };
   // ...
 }
 ```
@@ -87,10 +87,10 @@ export async function createLink(input: CreateLinkInput) {
 // ✅ Correct
 export async function createLink(input: CreateLinkInput) {
   const { userId } = await auth();
-  if (!userId) return { error: "Unauthorized" };
+  if (!userId) return { error: 'Unauthorized' };
 
   const parsed = createLinkSchema.safeParse(input);
-  if (!parsed.success) return { error: "Invalid input" };
+  if (!parsed.success) return { error: 'Invalid input' };
 
   await insertLink({ ...parsed.data, userId });
   return { success: true };
@@ -98,7 +98,7 @@ export async function createLink(input: CreateLinkInput) {
 
 // ❌ Wrong
 export async function createLink(input: CreateLinkInput) {
-  throw new Error("Unauthorized");
+  throw new Error('Unauthorized');
 }
 ```
 

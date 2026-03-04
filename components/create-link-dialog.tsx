@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Plus } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -11,16 +11,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { createLink } from "@/app/dashboard/actions";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { createLink } from '@/app/dashboard/actions';
 
 export function CreateLinkDialog() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [url, setUrl] = useState("");
-  const [shortCode, setShortCode] = useState("");
+  const [url, setUrl] = useState('');
+  const [shortCode, setShortCode] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -28,8 +28,8 @@ export function CreateLinkDialog() {
     if (!loading) {
       setOpen(value);
       if (!value) {
-        setUrl("");
-        setShortCode("");
+        setUrl('');
+        setShortCode('');
         setError(null);
       }
     }
@@ -44,14 +44,14 @@ export function CreateLinkDialog() {
 
     setLoading(false);
 
-    if ("error" in result) {
+    if ('error' in result) {
       setError(result.error);
       return;
     }
 
     setOpen(false);
-    setUrl("");
-    setShortCode("");
+    setUrl('');
+    setShortCode('');
     router.refresh();
   }
 
@@ -113,7 +113,7 @@ export function CreateLinkDialog() {
                 Cancel
               </Button>
               <Button type="submit" disabled={loading}>
-                {loading ? "Creating..." : "Create Link"}
+                {loading ? 'Creating...' : 'Create Link'}
               </Button>
             </DialogFooter>
           </form>

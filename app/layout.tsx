@@ -1,32 +1,32 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
 import {
   SignInButton,
   SignUpButton,
   SignedIn,
   SignedOut,
   UserButton,
-} from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import { ClerkThemeProvider } from "@/components/providers/clerk-theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
-import "./globals.css";
+} from '@clerk/nextjs';
+import { Button } from '@/components/ui/button';
+import { ThemeProvider } from '@/components/providers/theme-provider';
+import { ClerkThemeProvider } from '@/components/providers/clerk-theme-provider';
+import { ThemeToggle } from '@/components/theme-toggle';
+import './globals.css';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "Link Shortener – Shorten, share & track your links",
+  title: 'Link Shortener – Shorten, share & track your links',
   description:
-    "Create short, shareable links in seconds. Monitor clicks, analyse your audience, and manage all your URLs from a single dashboard.",
+    'Create short, shareable links in seconds. Monitor clicks, analyse your audience, and manage all your URLs from a single dashboard.',
 };
 
 export default function RootLayout({
